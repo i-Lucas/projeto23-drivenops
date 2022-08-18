@@ -7,7 +7,7 @@ services:
     ports:
       - 4457:5432
     env_file:
-      - .env
+      - back-end/.env
     volumes:
       - postgres_sorteador_db:/var/lib/postgresql/data
 
@@ -19,7 +19,7 @@ services:
     depends_on:
       - postgres_sorteador_db
     env_file:
-      - .env
+      - back-end/.env
 
   react_sorteador_app:
     container_name: react_sorteador_app
@@ -30,7 +30,7 @@ services:
   nginx_sorteador_app:
     container_name: nginx_sorteador_app
     build: ./nginx
-    port:
+    ports:
       - 8080:80
     volumes:
       - build_react:/var/www/html
@@ -41,3 +41,4 @@ services:
 
 volumes:
   postgres_sorteador_db:
+  build_react:
