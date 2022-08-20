@@ -1,0 +1,6 @@
+* {
+
+    box-sizing: border-box;
+    --my-color: #42446E;
+    --my-font: 'Poppins', sans-serif;
+}
