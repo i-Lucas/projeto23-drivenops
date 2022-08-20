@@ -31,4 +31,9 @@ app.get("/students/random", async (req: Request, res: Response) => {
   }
 });
 
+app.delete("/students", async (req: Request, res: Response) => {
+  await prisma.student.deleteMany({});
+  res.sendStatus(200);
+});
+
 export default app;
