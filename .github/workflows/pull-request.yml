@@ -6,15 +6,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Make a new env file
+      - name: Create back-end env.test file
         uses: SpicyPizza/create-envfile@v1
         with:
-          envkey_POSTGRES_USER: "postgres"
-          envkey_POSTGRES_PASSWORD: "postgres"
-          envkey_POSTGRES_DB: "studentsTest"
-          envkey_DATABASE_URL: "postgresql://postgres:postgres@postgres_sorteador_db:5432/studentsTest"
-          envkey_NODE_MODE: "TEST"
-          file_name: ".env.test"
+          envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB_TEST }}
+          envkey_DATABASE_URL: ${{ secrets.DATABASE_URL_TEST }}
+          envkey_NODE_MODE: TEST
+          file_name: .env.test
+          directory: back-end/
+          fail_on_empty: true
 
       - name: Run Tests
         run: docker-compose -f docker-compose-tests.yml run node_sorteador_app npm run test
